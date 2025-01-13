@@ -1,12 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  workflow_dispatch:  # Manual trigger for this workflow
-      inputs:
-        env:
-          description: "Environment to deploy to"
-          required: true
-          default: "production" # Trigger pipeline on pull requests to the main branch
+  push:
+    branches:
+      - main  # Trigger pipeline on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger pipeline on pull requests to the main branch
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       # Step 3: Placeholder for running tests
       - name: Run tests
         run: echo "Running tests..." # Replace with your actual test commands
-
+        
   deploy-dev:
             name: Deploy Job dev env
             runs-on: ubuntu-latest
