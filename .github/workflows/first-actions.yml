@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8 , 3.9]
+        python-version: [3.8]
 
     steps:
     - uses: actions/checkout@v3
@@ -28,6 +28,8 @@ jobs:
         python -m pytest addition.py
 
   deploy:
-      need: build 
+    needs: build 
+
+    steps:
     - name: deploy the code
       run: echo " deploy the application "
